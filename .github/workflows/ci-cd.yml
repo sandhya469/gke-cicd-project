@@ -1,0 +1,32 @@
+name: Demo CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Show files
+      run: ls -la
+
+    - name: Build Docker image
+      run: docker build -t my-app .
+
+    - name: Run container test
+      run: |
+        docker run -d -p 8080:80 my-app
+        sleep 5
+        curl http://localhost:8080
+
+    - name: Fake Deploy Step
+      run: echo "Application deployed successfully (Demo)"
+
+    - name: Success Message
+      run: echo "CI/CD Pipeline Completed 🚀"

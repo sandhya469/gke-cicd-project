@@ -1,0 +1,6 @@
+.config/
+.docker/
+.gemini/
+.npm/
+*.log
+.bash*
